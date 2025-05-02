@@ -9,12 +9,12 @@ RUN pip3 install -r requirements.txt
 
 COPY model.py .
 COPY dataset.csv .
-RUN python38 model.py
+RUN python3 model.py
 
 COPY index.html .
 COPY result.html .
 
-COPY flaskapp.py
+COPY flaskapp.py .
 EXPOSE 5000
 CMD ["python3.8","flaskapp.py"]
 
