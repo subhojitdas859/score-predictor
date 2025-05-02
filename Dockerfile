@@ -1,21 +1,15 @@
 #Please see README file for instructions.
-FROM rockylinux/rockylinux
-RUN dnf install python39 -y
-RUN dnf install python39-pip
+FROM python:3.8
 
-WORKDIR ../score_pred_workdir
+WORKDIR /opt/score-pred
+
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt 
+RUN pip install -r requirements.txt
 
-COPY model.py .
-COPY dataset.csv .
-RUN python3 model.py
+COPY . .
+RUN python3.8 model.py
 
-COPY index.html .
-COPY result.html .
-
-COPY flaskapp.py .
 EXPOSE 5000
-CMD ["python3.8","flaskapp.py"]
 
+CMD ["python3.8", "flaskapp.py"]
 
